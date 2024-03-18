@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles/main.css" />
     <title>Document</title>
 </head>
 <body>
-    <div class="heading"></div>
+    <header>
+        <img src="/public/assets/pokemon-icon.svg" alt="Pokeball Icon">
+        <h1 class="heading">PokeParty</h1>
+    </header>
+
     <form method="post" action="/add" class="add_pokemon">
         <input type="text" name="newPokemon" placeholder="Add A Pokemon!" autocomplete="off" autofocus="true">
         <button class="add_btn" type="submit">Add</button>
     </form>
+
     <div class="party_container">
         <% for(let pokemon of partyList){ %>
-            <div class="pokemon">
-                <img src="" alt="pokemon icon">
+            <div class="pokemon_card">
+                <img src="/public/assets/charmander.png" alt="pokemon icon">
+
                 <h1>Pokemon Name</h1>
+
                 <div class="btn_container">
                     <form action="/edit" method="post">
                         <button class="edit_btn" type="submit">
@@ -29,7 +38,11 @@
                     </form>
                 </div>
             </div>
-        <% }%>
+        <% } %>
     </div>
+
+    <footer>
+
+    </footer>
 </body>
 </html>
