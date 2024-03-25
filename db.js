@@ -4,7 +4,7 @@ const pool = new pg.Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'pokemon-party-db',
-    password: '',
+    password: '', // change this to whatever your server password is that you setup for PgAdmin 4
     port: 5432
 });
 
