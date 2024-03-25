@@ -4,7 +4,7 @@ const pool = new pg.Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'pokemon-party-db',
-    password: 'Zeon1357',
+    password: '',
     port: 5432
 });
 
