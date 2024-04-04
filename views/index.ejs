@@ -1,15 +1,20 @@
+<!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/styles/main.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles/main.css" />   
+    <link rel="stylesheet" href="/styles/fonts.css" />
+    <title>It's PokeParty Time!</title>
+    <style>
+
+    </style>
 </head>
 <body>
     <header>
-        <img src="/public/assets/pokemon-icon.svg" alt="Pokeball Icon">
+        <img src="/assets/charmander.png" alt="pokemon icon" class="pokemon-image">
         <h1 class="heading"><%= headingText %></h1>
     </header>
 
@@ -21,28 +26,70 @@
     <div class="party_container">
         <% for(let pokemon of partyList){ %>
             <div class="pokemon_card">
-                <img src="/public/assets/charmander.png" alt="pokemon icon">
-
-                <h1><%= pokemon.name %></h1>
+                <div class="card_head">
+                    <img src="/assets/pokemon-icon.svg" alt="Pokeball Icon" width="25" height="25">
+                    <h1><%= pokemon.name %></h1>
+                </div>
 
                 <div class="btn_container">
-                    <form action="/edit" method="post">
-                        <button class="edit_btn" type="submit">
-                            <img src="" alt="">
-                        </button>
-                    </form>
-                    <form action="/delete" method="post">
-                        <button class="del_btn" type="submit">
-                            <img src="" alt="">
-                        </button>
+                    <button class="edit_btn" onclick="openEditPopup('<%= pokemon.id %>', '<%= pokemon.name %>')"><img src="/assets/edit.png" class="icon" /></button>
+                    <form action="/delete/<%= pokemon.id %>" method="post">
+                        <button class="del_btn" type="submit"><img src="/assets/trash.png" class="icon" /></button>
                     </form>
                 </div>
             </div>
         <% } %>
     </div>
 
-    <footer>
+    <div id="editPopup" class="popup">
+        <div class="contents">
+            <form id="editForm" method="post" action="">
+                <input type="hidden" name="id" id="editId">
+                <input type="text" name="newName" id="editName">
+                <button onclick="submitEditForm()">Save</button>
+            </form>
+            <button onclick="closeEditPopup()">Cancel</button>
+        </div>
 
+    </div>
+    <footer>
     </footer>
+
+    <script>    
+        function openEditPopup(id, name) {
+        document.getElementById('editId').value = id;
+        document.getElementById('editName').value = name;
+        document.getElementById('editForm').action = `/edit/${id}`; 
+        document.getElementById('editPopup').style.display = 'block';
+    }
+
+    function closeEditPopup() {
+        document.getElementById('editPopup').style.display = 'none';
+        return false;
+    }
+
+    function submitEditForm() {
+        const form = document.getElementById('editForm');
+        const formData = new FormData(form);
+        console.log(form.getAttribute('action'));
+        fetch(form.getAttribute('action'), {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+
+                closeEditPopup();
+            } else {
+
+                throw new Error('Failed to edit Pokemon');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+    </script>
+    
 </body>
 </html>

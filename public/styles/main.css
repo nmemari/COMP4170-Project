@@ -1,0 +1,86 @@
+body {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #C6776C;
+}
+
+@font-face {
+    font-family: 'PokemonClassic';
+    src: url('/fonts/pokemon-classic.tff') format('truetype');
+}
+
+body {
+    font-family: 'PokemonClassic', sans-serif;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+}
+
+.pokemon-image {
+    height: 50px;
+    width: 50px;
+}
+
+.pokemon_card  {
+    background: antiquewhite;
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 4px darkred;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_head {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0;
+}
+
+button {
+    background: #74A7C9;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}   
+
+.add_pokemon {
+    margin: 100px 0;
+}
+
+.contents {
+    display: flex;
+    gap: 4px;
+}
